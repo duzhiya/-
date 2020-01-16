@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.js"></script>
+</head>
+
+<body>
+    <input type="text" id="test" value="" />
+    <input type="button" onclick="my()" value="点击" />
+    <div id="nickname"></div>
+    <div id="password"></div>
+    <div id="regIp"></div>
+    <div id="regTime"></div>
+    <script>
+        function my() {
+            $.ajax({
+                type: "get",
+                url: "http://apiadmin.xxdalaba.cn/api/5cda5d0b8c5cc",
+                headers: {
+                    'version': 'v3.0'
+                },
+                data: {
+                    'app_id': '60056877',
+                    'device_id': 'web',
+                    'rand_str': 'wcnmlgb1234',
+                    'timestamp': '1564110637486',
+                    'signature': '34cc35f4c18b265b0a8648434aefb0da'
+                },
+                success: function (data) {
+                    console.log(data);
+                    var aa = data.data.access_token;
+                    // var inp = document.getElementById("test").value;
+                    $.ajax({
+                        type: "post",
+                        url: "http://apiadmin.xxdalaba.cn/api/5cda5cba9b5d6",
+                        headers: {
+                            'version': 'v3.0',
+                            'access-token': aa
+                        },
+                        data: {
+                            'id': 3,
+                        },
+                        success: function (dat) {
+                            console.log(dat);
+                            // var nickname = dat.data.nickname;
+                            // var password = dat.data.password;
+                            // var regIp = dat.data.regIp;
+                            // var regTime = dat.data.regTime;
+                            // document.getElementById("nickname").innerHTML = nickname;
+                            // document.getElementById("password").innerHTML = password;
+                            // document.getElementById("regIp").innerHTML = regIp;
+                            // document.getElementById("regTime").innerHTML = regTime;
+                        }
+                    });
+                }
+            });
+        };
+    </script>
+</body>
+
+</html>
